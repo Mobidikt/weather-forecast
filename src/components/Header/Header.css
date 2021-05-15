@@ -26,6 +26,8 @@
 }
 @media screen and (max-width: 900px) {
     .header__title {
+        padding-top: 32px;
+        margin-bottom: 24px;
         max-width: 244px;
         font-size: 32px;
     }
