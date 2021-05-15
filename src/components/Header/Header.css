@@ -1,5 +1,7 @@
 .header {
-    margin: 65px auto 60px;
+    margin: 0 auto 60px;
+    width: 100%;
+    padding-top: 65px;
 }
 .header__seo-title {
     display: none;
@@ -14,6 +16,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    color: #FFFFFF;
 }
 .header__title_left-up {
     text-align: left;
