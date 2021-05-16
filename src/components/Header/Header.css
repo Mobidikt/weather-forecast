@@ -11,7 +11,7 @@
     font-style: normal;
     font-weight: 700;
     font-size: 102px;
-    height: 212px;
+    min-height: 212px;
     max-width: 776px;
     margin: 0 auto;
     display: flex;
@@ -24,11 +24,14 @@
 .header__title_right-down {
     text-align: right;
 }
-@media screen and (max-width: 900px) {
-    .header__title {
+@media screen and (max-width: 800px) {
+    .header {
         padding-top: 32px;
         margin-bottom: 24px;
+    }
+    .header__title {
         max-width: 244px;
+        min-height: 64px;
         font-size: 32px;
     }
 }
