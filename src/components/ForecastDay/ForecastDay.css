@@ -1,12 +1,62 @@
 .forecast-day {
     min-height: 524px;
     width: 660px;
+    padding: 50px 58px 70px;
+    box-sizing: border-box;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(4, 5, 73, 0.25), 14px 14px 20px rgba(5, 6, 114, 0.2);
     border-radius: 8px;
 }
+.forecast-day__title {
+    font-family: "Ubuntu";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    margin: 0 0 32px;
+}
+.forecast-day__menu {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 54px;
+}
+.forecast-day__weather {
+    height: 238px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #373AF5;
+    border: 2px solid #373AF5;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(4, 5, 73, 0.25), 14px 14px 20px rgba(5, 6, 114, 0.2);
+    border-radius: 8px;
+}
+.forecast-day__date {
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0;
+    color: #FFFFFF;
+}
+.forecast-day__degree {
+    margin: 0;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+    color: #FFFFFF;
+    align-self: flex-end;
+}
 @media screen and (max-width: 800px) {
     .forecast-day {
         width: 300px;
+        min-height: 576px;
+        padding: 32px 24px 60px;
+    }
+    .forecast-day__weather {
+        flex-direction: column;
     }
 }
