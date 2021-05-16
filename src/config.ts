@@ -1,4 +1,9 @@
-export const list_cities: {name: string, longitude: number, latitude: number}[] = [
+export type CityType = {
+    name: string,
+    longitude: number,
+    latitude: number,
+}
+export const list_cities: CityType[] = [
     {
         name: 'Самара',
         longitude: 53.195873,
