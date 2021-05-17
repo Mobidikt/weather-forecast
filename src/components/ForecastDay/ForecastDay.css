@@ -60,10 +60,10 @@
     cursor: pointer;
     outline: none;
 }
-.input-cities:hover {
+.input-forecast:hover {
     border: 2px solid #373AF5;
 }
-.input-cities:focus {
+.input-forecast:focus {
     border: 2px solid #373AF5;
 }
 .list-cities {

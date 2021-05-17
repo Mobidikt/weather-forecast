@@ -6,8 +6,8 @@ import './Main.css';
 const Main: React.FC = () => {
   return (
     <main className='main'>
-        <ForecastWeek />
-        <ForecastDay />
+      <ForecastWeek />
+      <ForecastDay />
     </main>
   );
 };
