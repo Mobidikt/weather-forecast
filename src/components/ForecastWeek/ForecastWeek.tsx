@@ -3,13 +3,11 @@ import imgPlaceholder from '../../assets/image/Academy-Weather-bg160.svg';
 import SelectCity from '../SelectCity/SelectCity';
 import { list_cities } from '../../config';
 import api from '../../utils/WeatherApi';
-import ArrowRight from '../../assets/image/icons/arrow-right.png';
-import ArrowLeft from '../../assets/image/icons/arrow-left.png';
 import './ForecastWeek.css';
+import Slider from '../Slider/Slider';
 
 const ForecastWeek: React.FC = () => {
   const [currentCity, setCurrentCity] = useState<string>('Samara');
-  const [translateX, settranslateX] = useState(0);
   // const [isloading, setIsloading] = useState<boolean>(false); // Отображение загрузки данных
   const [forecastWeek, setForecastWeek] = useState<any[]>([
     {
@@ -57,25 +55,10 @@ const ForecastWeek: React.FC = () => {
   //       });
   //   }
   // }, [currentCity]);
-  const onSliderSwap = useCallback(
-    (direction: string) => {
-      if (direction === 'left') {
-        if (translateX < -368) {
-          settranslateX((prev) => prev + 552);
-        } else settranslateX((prev) => prev + 368);
-      }
-      if (direction === 'right') {
-        if (translateX > -552) {
-          console.log(translateX > -552, translateX);
-          settranslateX((prev) => prev - 552);
-        } else settranslateX((prev) => prev - 368);
-      }
-    },
-    [translateX],
-  );
-  const handleCityChange = (e: any) => {
+
+  const handleCityChange = useCallback((e: any) => {
     setCurrentCity(e.target.value);
-  };
+  }, []);
   return (
     <div className='forecast-week'>
       <h2 className='forecast-week__title'>7 Days Forecast</h2>
@@ -86,41 +69,7 @@ const ForecastWeek: React.FC = () => {
         />
       </div>
       {currentCity ? (
-        <div className='slider'>
-          <button
-            disabled={translateX >= 0}
-            className={`slider__btn slider__btn_left ${
-              translateX === 0 ? 'slider__btn_disable' : ''
-            }`}
-            type='button'
-            onClick={() => {
-              onSliderSwap('left');
-            }}
-          />
-
-          <button
-            disabled={translateX === -920}
-            className={`slider__btn slider__btn_right ${
-              translateX <= -920 ? 'slider__btn_disable' : ''
-            }`}
-            type='button'
-            onClick={() => {
-              onSliderSwap('right');
-            }}
-          />
-          <div className='slider__wrapper'>
-            <ul
-              className='forecast-week__list'
-              style={{ transform: `translateX(${translateX}px)` }}>
-              {forecastWeek.map((day) => (
-                <div key={day.dt} className='forecast-week__item'>
-                  <p className='forecast-week__date'>Date</p>
-                  <p className='forecast-week__degree'>degrees</p>
-                </div>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <Slider forecastWeek={forecastWeek} />
       ) : (
         <div className='placeholder'>
           <img
