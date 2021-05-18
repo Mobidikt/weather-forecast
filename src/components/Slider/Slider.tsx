@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { formatDegress } from '../../utils/formatDegress';
 import './Slider.scss';
 
 type SliderType = {
@@ -54,7 +55,7 @@ const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
           {forecastWeek.map((day) => (
             <div key={day.dt} className='slider__item'>
               <p className='slider__date'>{day.dt}</p>
-              <p className='slider__degree'>{day.temp.day}</p>
+              <p className='slider__degree'>{formatDegress(day.temp.day)}°</p>
             </div>
           ))}
         </ul>
