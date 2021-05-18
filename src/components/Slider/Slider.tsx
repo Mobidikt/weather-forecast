@@ -12,15 +12,14 @@ const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
   const onSliderSwap = useCallback(
     (direction: string) => {
       if (direction === 'left') {
-        if (translateX < -368) {
-          settranslateX((prev) => prev + 552);
-        } else settranslateX((prev) => prev + 368);
+        if (translateX < 0) {
+          settranslateX((prev) => prev + 184);
+        }
       }
       if (direction === 'right') {
-        if (translateX > -552) {
-          console.log(translateX > -552, translateX);
-          settranslateX((prev) => prev - 552);
-        } else settranslateX((prev) => prev - 368);
+        if (translateX > -920) {
+          settranslateX((prev) => prev - 184);
+        }
       }
     },
     [translateX],

@@ -7,42 +7,15 @@ import './ForecastWeek.css';
 import Slider from '../Slider/Slider';
 
 const ForecastWeek: React.FC = () => {
-  const [currentCity, setCurrentCity] = useState<string>('Samara');
+  const [indexCity, setIndexCity] = useState<number>(-1);
   // const [isloading, setIsloading] = useState<boolean>(false); // Отображение загрузки данных
-  const [forecastWeek, setForecastWeek] = useState<any[]>([
-    {
-      dt: 1621238400,
-
-      temp: { day: 31.48, min: 19.36, max: 32.39, night: 25.11, eve: 27.99 },
-    },
-    {
-      dt: 1621324800,
-
-      temp: { day: 31.95, min: 19.44, max: 32.77, night: 24.55, eve: 31.3 },
-    },
-    {
-      dt: 1621411200,
-
-      temp: { day: 30.08, min: 19.38, max: 30.9, night: 19.78, eve: 22.59 },
-    },
-    {
-      dt: 1621497600,
-
-      temp: { day: 25.84, min: 16.42, max: 25.84, night: 16.42, eve: 17.95 },
-    },
-    {
-      dt: 1621584000,
-
-      temp: { day: 24.44, min: 14.7, max: 25.54, night: 19.51, eve: 23.76 },
-    },
-  ]);
+  const [forecastWeek, setForecastWeek] = useState<any[]>([]);
 
   useEffect(() => {
-    const city = list_cities.find((city) => city.name === currentCity);
-    if (city) {
+    if (indexCity >= 0) {
       // setIsloading(true); // Отображение загрузки данных
       api
-        .getForecastWeek(city)
+        .getForecastWeek(list_cities[indexCity])
         .then((res) => {
           console.log(res.daily);
           setForecastWeek(res.daily);
@@ -54,21 +27,21 @@ const ForecastWeek: React.FC = () => {
           // setIsloading(false); // Отображение загрузки данных
         });
     }
-  }, [currentCity]);
+  }, [indexCity]);
 
   const handleCityChange = useCallback((e: any) => {
-    setCurrentCity(e.target.value);
+    setIndexCity(e.target.value);
   }, []);
   return (
     <div className='forecast-week'>
       <h2 className='forecast-week__title'>7 Days Forecast</h2>
       <div className='forecast-week__menu'>
         <SelectCity
-          currentCity={currentCity}
+          currentCity={indexCity}
           handleCityChange={handleCityChange}
         />
       </div>
-      {currentCity ? (
+      {forecastWeek.length > 0 ? (
         <Slider forecastWeek={forecastWeek} />
       ) : (
         <div className='placeholder'>

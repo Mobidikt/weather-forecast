@@ -5,11 +5,11 @@ import SelectCity from '../SelectCity/SelectCity';
 import './ForecastDay.css';
 
 const ForecastDay: React.FC = () => {
-  const [currentCity, setCurrentCity] = useState<string>('');
+  const [indexCity, setIndexCity] = useState<number>(-1);
   const [forecastDate, setForecastDate] = useState<string>('forecastDate');
 
   const handleCityChange = (e: any) => {
-    setCurrentCity(e.target.value);
+    setIndexCity(e.target.value);
   };
 
   return (
@@ -17,7 +17,7 @@ const ForecastDay: React.FC = () => {
       <h2 className='forecast-day__title'>Forecast for a Date in the Past</h2>
       <div className='forecast-day__menu'>
         <SelectCity
-          currentCity={currentCity}
+          currentCity={indexCity}
           handleCityChange={handleCityChange}
         />
         <input
@@ -30,7 +30,7 @@ const ForecastDay: React.FC = () => {
           onChange={(event) => console.log(event.target.value)}
         />
       </div>
-      {currentCity ? (
+      {/* {currentCity ? (
         <div className='forecast-day__weather'>
           <p className='forecast-day__date'>Date</p>
           <p className='forecast-day__degree'>degrees</p>
@@ -46,7 +46,7 @@ const ForecastDay: React.FC = () => {
             Fill in all the fields and the weather will be displayed
           </p>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

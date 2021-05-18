@@ -3,7 +3,7 @@ import { list_cities } from '../../config';
 import './SelectCity.scss';
 
 type SelectCityType = {
-  currentCity: string;
+  currentCity: number;
   handleCityChange: (e: any) => void;
 };
 
@@ -16,11 +16,11 @@ const SelectCity: React.FC<SelectCityType> = ({
       className='select-city'
       onChange={handleCityChange}
       value={currentCity}>
-      <option value='' hidden>
+      <option value={-1} hidden>
         Select city
       </option>
-      {list_cities.map((city) => (
-        <option key={city.name} value={city.name}>
+      {list_cities.map((city, i) => (
+        <option key={city.name} value={i}>
           {city.name}
         </option>
       ))}
