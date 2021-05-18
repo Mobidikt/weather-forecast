@@ -1,7 +1,7 @@
 import React from 'react';
 import ForecastDay from '../ForecastDay/ForecastDay';
 import ForecastWeek from '../ForecastWeek/ForecastWeek';
-import './Main.css';
+import './Main.scss';
 
 const Main: React.FC = () => {
   return (

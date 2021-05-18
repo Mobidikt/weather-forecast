@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import './Slider.css';
+import './Slider.scss';
 
 type SliderType = {
   forecastWeek: any[];

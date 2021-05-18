@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import imgPlaceholder from '../../assets/image/Academy-Weather-bg160.svg';
+import imgPlaceholder from '../../assets/image/placeholder-img.png';
 import { list_cities } from '../../config';
 import SelectCity from '../SelectCity/SelectCity';
 import './ForecastDay.css';

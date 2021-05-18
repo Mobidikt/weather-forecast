@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import imgPlaceholder from '../../assets/image/Academy-Weather-bg160.svg';
+import imgPlaceholder from '../../assets/image/placeholder-img.png';
 import SelectCity from '../SelectCity/SelectCity';
 import { list_cities } from '../../config';
 import api from '../../utils/WeatherApi';

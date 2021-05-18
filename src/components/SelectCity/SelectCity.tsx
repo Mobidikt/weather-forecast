@@ -1,6 +1,6 @@
 import React from 'react';
 import { list_cities } from '../../config';
-import './SelectCity.css';
+import './SelectCity.scss';
 
 type SelectCityType = {
   currentCity: string;
