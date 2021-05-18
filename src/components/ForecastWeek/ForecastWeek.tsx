@@ -37,24 +37,24 @@ const ForecastWeek: React.FC = () => {
     },
   ]);
 
-  // useEffect(() => {
-  //   const city = list_cities.find((city) => city.name === currentCity);
-  //   if (city) {
-  //     // setIsloading(true); // Отображение загрузки данных
-  //     api
-  //       .getForecastWeek(city)
-  //       .then((res) => {
-  //         console.log(res.daily);
-  //         setForecastWeek(res.daily);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       })
-  //       .finally(() => {
-  //         // setIsloading(false); // Отображение загрузки данных
-  //       });
-  //   }
-  // }, [currentCity]);
+  useEffect(() => {
+    const city = list_cities.find((city) => city.name === currentCity);
+    if (city) {
+      // setIsloading(true); // Отображение загрузки данных
+      api
+        .getForecastWeek(city)
+        .then((res) => {
+          console.log(res.daily);
+          setForecastWeek(res.daily);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          // setIsloading(false); // Отображение загрузки данных
+        });
+    }
+  }, [currentCity]);
 
   const handleCityChange = useCallback((e: any) => {
     setCurrentCity(e.target.value);

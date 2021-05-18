@@ -53,8 +53,8 @@ const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
           style={{ transform: `translateX(${translateX}px)` }}>
           {forecastWeek.map((day) => (
             <div key={day.dt} className='slider__item'>
-              <p className='slider__date'>Date</p>
-              <p className='slider__degree'>degrees</p>
+              <p className='slider__date'>{day.dt}</p>
+              <p className='slider__degree'>{day.temp.day}</p>
             </div>
           ))}
         </ul>
