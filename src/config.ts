@@ -3,6 +3,7 @@ export type CityType = {
   longitude: number;
   latitude: number;
 };
+
 export const list_cities: CityType[] = [
   {
     name: 'Samara',
@@ -29,6 +30,21 @@ export const list_cities: CityType[] = [
     longitude: 45.03547,
     latitude: 38.975313,
   },
+];
+
+export const name_month: string[] = [
+  'jan',
+  'feb',
+  'mar',
+  'apr',
+  'may',
+  'jun',
+  'jul',
+  'aug',
+  'sep',
+  'oct',
+  'nov',
+  'dec',
 ];
 
 export const WEATHER_API: { URL: string; KEY: string } = {

@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { formatFullDate } from '../../utils/formatDate';
 import { formatDegress } from '../../utils/formatDegress';
 import './Slider.scss';
 
@@ -12,7 +13,7 @@ const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
   const onSliderSwap = useCallback(
     (direction: string) => {
       if (direction === 'left') {
-        if (translateX < 0) {
+        if (translateX < 183) {
           settranslateX((prev) => prev + 184);
         }
       }
@@ -52,9 +53,13 @@ const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
           className='slider__list'
           style={{ transform: `translateX(${translateX}px)` }}>
           {forecastWeek.map((day) => (
-            <div key={day.dt} className='slider__item'>
-              <p className='slider__date'>{day.dt}</p>
-              <p className='slider__degree'>{formatDegress(day.temp.day)}°</p>
+            <div key={day.dt} className='card'>
+              <p className='card__date'>{formatFullDate(day.dt)}</p>
+              <img
+                className='card__img'
+                src={`/images/weather/${day.weather[0].icon}.png`}
+              />
+              <p className='card__degree'>{formatDegress(day.temp.day)}°</p>
             </div>
           ))}
         </ul>
