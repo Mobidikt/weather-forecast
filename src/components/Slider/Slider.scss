@@ -1,5 +1,6 @@
 .slider {
     width: 100%;
+    box-sizing: border-box;
     position: relative;
     &__list {
         display: flex;
@@ -85,14 +86,23 @@
 }
 
 @media screen and (max-width: 800px) {
-
+    .slider{
+        position: absolute;
+        left: 0;
+        &__wrapper {
+            overflow: visible;
+        }
+    }
     .slider__list {
         overflow-x: auto;
     }
-    .slider__item {
+    .card {
         margin-right: 16px;
+        &:first-of-type{
+            margin-left: 24px;
+        }
         &:last-of-type {
-            margin-right: 0;
+            margin-right: 24px;
         }
     }
     .slider__btn {

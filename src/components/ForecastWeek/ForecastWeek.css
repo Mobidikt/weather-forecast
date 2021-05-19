@@ -12,6 +12,7 @@
     font-style: normal;
     font-weight: 700;
     font-size: 32px;
+    line-height: 32px;
     margin: 0 0 30px;
 }
 .forecast-week__menu {
@@ -46,6 +47,7 @@
 }
 @media screen and (max-width: 800px) {
     .forecast-week {
+        position: relative;
         width: 300px;
         min-height: 464px;
         padding: 32px 24px 60px;
@@ -53,9 +55,13 @@
     }
     .forecast-week__menu {
         flex-direction: column;
+        margin-bottom: 30px;
     }
     .forecast-week__weather {
         flex-direction: column;
+    }
+    .forecast-week__title {
+        margin-bottom: 25px;
     }
     .placeholder__text{
         max-width: 240px;
