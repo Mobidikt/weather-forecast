@@ -10,6 +10,9 @@ type SliderType = {
 const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
   const [translateX, settranslateX] = useState(0);
 
+  /**
+   * Сдвигаем карточки слайдера
+   */
   const onSliderSwap = useCallback(
     (direction: string) => {
       if (direction === 'left') {
@@ -25,6 +28,7 @@ const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
     },
     [translateX],
   );
+
   return (
     <div className='slider'>
       <button
@@ -37,7 +41,6 @@ const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
           onSliderSwap('left');
         }}
       />
-
       <button
         disabled={translateX === -920}
         className={`slider__btn slider__btn_right ${

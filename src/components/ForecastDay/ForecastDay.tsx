@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import imgPlaceholder from '../../assets/image/placeholder-img.png';
+import React, { useCallback, useState } from 'react';
 import { list_cities } from '../../config';
+import PlaceholderForecast from '../PlaceholderForecast/PlaceholderForecast';
 import SelectCity from '../SelectCity/SelectCity';
 import './ForecastDay.css';
 
@@ -8,9 +8,12 @@ const ForecastDay: React.FC = () => {
   const [indexCity, setIndexCity] = useState<number>(-1);
   const [forecastDate, setForecastDate] = useState<string>('forecastDate');
 
-  const handleCityChange = (e: any) => {
-    setIndexCity(e.target.value);
-  };
+  /**
+   * Выбираем город
+   */
+  const handleCityChange = useCallback((index: number) => {
+    setIndexCity(index);
+  }, []);
 
   return (
     <div className='forecast-day'>
@@ -33,17 +36,9 @@ const ForecastDay: React.FC = () => {
           <p className='forecast-day__degree'>degrees</p>
         </div>
       ) : (
-        <div className='placeholder'>
-          <img
-            className='placeholder__img'
-            src={imgPlaceholder}
-            alt='Weather'
-          />
-          <p className='placeholder__text'>
-            Fill in all the fields and the weather will be displayed
-          </p>
-        </div>
-      )} */}
+        <PlaceholderForecast />
+      )}
+    </div> */}
     </div>
   );
 };

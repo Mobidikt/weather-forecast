@@ -1,16 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import imgPlaceholder from '../../assets/image/placeholder-img.png';
 import SelectCity from '../SelectCity/SelectCity';
 import { list_cities } from '../../config';
 import api from '../../utils/WeatherApi';
 import './ForecastWeek.css';
 import Slider from '../Slider/Slider';
+import PlaceholderForecast from '../PlaceholderForecast/PlaceholderForecast';
 
 const ForecastWeek: React.FC = () => {
   const [indexCity, setIndexCity] = useState<number>(-1);
   // const [isloading, setIsloading] = useState<boolean>(false); // Отображение загрузки данных
   const [forecastWeek, setForecastWeek] = useState<any[]>([]);
 
+  /**
+   * Загружаем данны с сервера
+   */
   useEffect(() => {
     if (indexCity >= 0) {
       // setIsloading(true); // Отображение загрузки данных
@@ -29,9 +32,13 @@ const ForecastWeek: React.FC = () => {
     }
   }, [indexCity]);
 
+  /**
+   * Выбираем город
+   */
   const handleCityChange = useCallback((index: number) => {
     setIndexCity(index);
   }, []);
+
   return (
     <div className='forecast-week'>
       <h2 className='forecast-week__title'>7 Days Forecast</h2>
@@ -41,16 +48,7 @@ const ForecastWeek: React.FC = () => {
       {forecastWeek.length > 0 ? (
         <Slider forecastWeek={forecastWeek} />
       ) : (
-        <div className='placeholder'>
-          <img
-            className='placeholder__img'
-            src={imgPlaceholder}
-            alt='Weather'
-          />
-          <p className='placeholder__text'>
-            Fill in all the fields and the weather will be displayed
-          </p>
-        </div>
+        <PlaceholderForecast />
       )}
     </div>
   );

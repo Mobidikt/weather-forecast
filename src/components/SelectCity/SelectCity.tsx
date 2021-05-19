@@ -12,13 +12,22 @@ const SelectCity: React.FC<SelectCityType> = ({
   handleCityChange,
 }) => {
   const [isOpenOptions, setIsOpenOptions] = useState<boolean>(false);
+
+  /**
+   * Показываем элементы селекта
+   */
   const openOptions = () => {
     setIsOpenOptions(true);
   };
+
+  /**
+   * Выбираем Город
+   */
   const selectOption = (index: number) => {
     setIsOpenOptions(false);
     handleCityChange(index);
   };
+
   return (
     <div
       className={`select-city ${indexCity < 0 ? 'select-city__default' : ''} ${
@@ -48,19 +57,6 @@ const SelectCity: React.FC<SelectCityType> = ({
         </div>
       </div>
     </div>
-    // <select
-    //   className={`select-city ${indexCity < 0 ? 'select-city__default' : ''}`}
-    //   onChange={handleCityChange}
-    //   value={indexCity}>
-    //   <option value={-1} hidden>
-    //     Select city
-    //   </option>
-    //   {list_cities.map((city, i) => (
-    //     <option className='select-city__option' key={city.name} value={i}>
-    //       {city.name}
-    //     </option>
-    //   ))}
-    // </select>
   );
 };
 
