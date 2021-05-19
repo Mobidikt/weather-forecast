@@ -1,25 +1,32 @@
 .header {
-    margin: 0 auto 60px;
+    margin: 0 auto 62px;
     width: 100%;
-    padding-top: 65px;
+    padding-top: 67px;
     &__seo-title {
         display: none;
     }
     &__title {
-        font-family: "Ubuntu";
+        position: relative;
+        font-family: Ubuntu;
         font-style: normal;
         font-weight: 700;
         font-size: 102px;
-        min-height: 212px;
+        height: 208px;
         max-width: 776px;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
         color: #FFFFFF;
         &_left-up {
+            position: absolute;
+            top: 0;
+            left: 0;
             text-align: left;
         }
         &_right-down {
+            position: absolute;
+            right: 0;
+            bottom: 0;
             text-align: right;
         }
     }

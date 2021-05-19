@@ -3,12 +3,12 @@
     font-style: normal;
     font-weight: 700;
     font-display: swap;
-    src: url('./Ubuntu-Bold.ttf') format('ttf');
+    src: url('./Ubuntu-Bold.ttf') format('truetype');
   }
 
   @font-face {
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: normal;
-    src: url('./Ubuntu-Regular.ttf') format('ttf');
+    src: url('./Ubuntu-Regular.ttf') format('truetype');
   }

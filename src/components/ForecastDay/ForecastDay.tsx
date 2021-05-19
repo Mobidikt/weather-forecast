@@ -16,10 +16,7 @@ const ForecastDay: React.FC = () => {
     <div className='forecast-day'>
       <h2 className='forecast-day__title'>Forecast for a Date in the Past</h2>
       <div className='forecast-day__menu'>
-        <SelectCity
-          currentCity={indexCity}
-          handleCityChange={handleCityChange}
-        />
+        <SelectCity indexCity={indexCity} handleCityChange={handleCityChange} />
         <input
           className='input-forecast'
           type='date'

@@ -29,17 +29,14 @@ const ForecastWeek: React.FC = () => {
     }
   }, [indexCity]);
 
-  const handleCityChange = useCallback((e: any) => {
-    setIndexCity(e.target.value);
+  const handleCityChange = useCallback((index: number) => {
+    setIndexCity(index);
   }, []);
   return (
     <div className='forecast-week'>
       <h2 className='forecast-week__title'>7 Days Forecast</h2>
       <div className='forecast-week__menu'>
-        <SelectCity
-          currentCity={indexCity}
-          handleCityChange={handleCityChange}
-        />
+        <SelectCity indexCity={indexCity} handleCityChange={handleCityChange} />
       </div>
       {forecastWeek.length > 0 ? (
         <Slider forecastWeek={forecastWeek} />
