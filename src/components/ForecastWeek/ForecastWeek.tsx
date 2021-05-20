@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import SelectCity from '../SelectCity/SelectCity';
 import { list_cities } from '../../config';
 import api from '../../utils/WeatherApi';
-import './ForecastWeek.css';
+import './ForecastWeek.scss';
 import Slider from '../Slider/Slider';
 import PlaceholderForecast from '../PlaceholderForecast/PlaceholderForecast';
 
