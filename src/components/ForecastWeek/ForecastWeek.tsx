@@ -5,11 +5,16 @@ import api from '../../utils/WeatherApi';
 import './ForecastWeek.scss';
 import Slider from '../Slider/Slider';
 import PlaceholderForecast from '../PlaceholderForecast/PlaceholderForecast';
+import {
+  WeatherDayApiType,
+  WeatherWeakApiType,
+} from '../../utils/WeatherApiType';
 
 const ForecastWeek: React.FC = () => {
   const [indexCity, setIndexCity] = useState<number>(-1);
   // const [isloading, setIsloading] = useState<boolean>(false); // Отображение загрузки данных
-  const [forecastWeek, setForecastWeek] = useState<any[]>([]);
+  const [forecastWeek, setForecastWeek] =
+    useState<WeatherDayApiType[] | null>(null);
 
   /**
    * Загружаем данны с сервера
@@ -19,8 +24,7 @@ const ForecastWeek: React.FC = () => {
       // setIsloading(true); // Отображение загрузки данных
       api
         .getForecastWeek(list_cities[indexCity])
-        .then((res) => {
-          console.log(res.daily);
+        .then((res: WeatherWeakApiType) => {
           setForecastWeek(res.daily);
         })
         .catch((err) => {
@@ -49,7 +53,7 @@ const ForecastWeek: React.FC = () => {
           indexCity={indexCity}
         />
       </div>
-      {forecastWeek.length > 0 ? (
+      {forecastWeek ? (
         <Slider forecastWeek={forecastWeek} />
       ) : (
         <PlaceholderForecast />

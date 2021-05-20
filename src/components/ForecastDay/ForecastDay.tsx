@@ -3,6 +3,10 @@ import { list_cities } from '../../config';
 import { formatFullDate } from '../../utils/formatDate';
 import { formatDegress } from '../../utils/formatDegress';
 import api from '../../utils/WeatherApi';
+import {
+  WeatherHistoricalApiType,
+  WeatherCurrentApiType,
+} from '../../utils/WeatherApiType';
 import InputDate from '../InputDate/InputDate';
 import PlaceholderForecast from '../PlaceholderForecast/PlaceholderForecast';
 import SelectCity from '../SelectCity/SelectCity';
@@ -10,8 +14,9 @@ import './ForecastDay.scss';
 
 const ForecastDay: React.FC = () => {
   const [indexCity, setIndexCity] = useState<number>(-1);
-  const [forecastDay, setForecastDay] = useState<any>(null);
-  const [dateForecast, setDateForecast] = useState<number | null>(0);
+  const [forecastDay, setForecastDay] =
+    useState<WeatherCurrentApiType | null>(null);
+  const [dateForecast, setDateForecast] = useState<number | null>(null);
 
   /**
    * Выбираем дату
@@ -34,8 +39,7 @@ const ForecastDay: React.FC = () => {
       // setIsloading(true); // Отображение загрузки данных
       api
         .getForecastDay(list_cities[indexCity], dateForecast)
-        .then((res) => {
-          console.log(res.current.weather[0].icon);
+        .then((res: WeatherHistoricalApiType) => {
           setForecastDay(res.current);
         })
         .catch((err) => {
