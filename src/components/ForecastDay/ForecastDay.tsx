@@ -19,7 +19,11 @@ const ForecastDay: React.FC = () => {
     <div className='forecast-day'>
       <h2 className='forecast-day__title'>Forecast for a Date in the Past</h2>
       <div className='forecast-day__menu'>
-        <SelectCity indexCity={indexCity} handleCityChange={handleCityChange} />
+        <SelectCity
+          prefixId='day'
+          indexCity={indexCity}
+          handleCityChange={handleCityChange}
+        />
         <input
           className='input-forecast'
           type='date'
@@ -35,10 +39,9 @@ const ForecastDay: React.FC = () => {
           <p className='forecast-day__date'>Date</p>
           <p className='forecast-day__degree'>degrees</p>
         </div>
-      ) : (
-        <PlaceholderForecast />
-      )}
-    </div> */}
+      ) : ( */}
+      <PlaceholderForecast />
+      {/* )} */}
     </div>
   );
 };

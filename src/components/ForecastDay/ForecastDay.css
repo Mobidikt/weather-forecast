@@ -97,6 +97,8 @@
     }
     .forecast-day__menu {
         flex-direction: column;
+        height: 120px;
+        margin-bottom: 30px;
     }
     .forecast-day__weather {
         flex-direction: column;

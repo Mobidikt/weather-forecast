@@ -3,11 +3,13 @@ import { list_cities } from '../../config';
 import './SelectCity.scss';
 
 type SelectCityType = {
+  prefixId: string; // префикс id - чтоб лейбл не тригерил инпут тругого селектора
   indexCity: number;
   handleCityChange: (index: number) => void;
 };
 
 const SelectCity: React.FC<SelectCityType> = ({
+  prefixId,
   indexCity,
   handleCityChange,
 }) => {
@@ -16,17 +18,17 @@ const SelectCity: React.FC<SelectCityType> = ({
   /**
    * Показываем элементы селекта
    */
-  const openOptions = () => {
+  const openOptions = useCallback(() => {
     setIsOpenOptions(true);
-  };
+  }, []);
 
   /**
    * Выбираем Город
    */
-  const selectOption = (index: number) => {
+  const selectOption = useCallback((index: number) => {
     setIsOpenOptions(false);
     handleCityChange(index);
-  };
+  }, []);
 
   return (
     <div
@@ -44,12 +46,14 @@ const SelectCity: React.FC<SelectCityType> = ({
                 type='checkbox'
                 className='select-city__option'
                 value={i}
-                id={city.name}
+                id={`${prefixId}_${city.name}`}
                 onChange={() => {
                   selectOption(i);
                 }}
               />
-              <label className='select-city__label' htmlFor={city.name}>
+              <label
+                className='select-city__label'
+                htmlFor={`${prefixId}_${city.name}`}>
                 {city.name}
               </label>
             </div>

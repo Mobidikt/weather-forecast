@@ -43,7 +43,11 @@ const ForecastWeek: React.FC = () => {
     <div className='forecast-week'>
       <h2 className='forecast-week__title'>7 Days Forecast</h2>
       <div className='forecast-week__menu'>
-        <SelectCity indexCity={indexCity} handleCityChange={handleCityChange} />
+        <SelectCity
+          prefixId='week'
+          handleCityChange={handleCityChange}
+          indexCity={indexCity}
+        />
       </div>
       {forecastWeek.length > 0 ? (
         <Slider forecastWeek={forecastWeek} />
