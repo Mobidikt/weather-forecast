@@ -25,10 +25,13 @@ const SelectCity: React.FC<SelectCityType> = ({
   /**
    * Выбираем Город
    */
-  const selectOption = useCallback((index: number) => {
-    setIsOpenOptions(false);
-    handleCityChange(index);
-  }, []);
+  const selectOption = useCallback(
+    (index: number) => {
+      setIsOpenOptions(false);
+      handleCityChange(index);
+    },
+    [handleCityChange],
+  );
 
   return (
     <div

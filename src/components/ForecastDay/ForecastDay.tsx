@@ -1,19 +1,49 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { list_cities } from '../../config';
+import api from '../../utils/WeatherApi';
+import InputDate from '../InputDate/InputDate';
 import PlaceholderForecast from '../PlaceholderForecast/PlaceholderForecast';
 import SelectCity from '../SelectCity/SelectCity';
 import './ForecastDay.css';
 
 const ForecastDay: React.FC = () => {
   const [indexCity, setIndexCity] = useState<number>(-1);
-  const [forecastDate, setForecastDate] = useState<string>('forecastDate');
+  const [forecastDay, setForecastDay] = useState<any>({});
+  const [dateForecast, setDateForecast] = useState<number | null>(0);
 
+  /**
+   * Выбираем дату
+   */
+  const handleForecastDateChange = (date: number | null) => {
+    setDateForecast(date);
+  };
   /**
    * Выбираем город
    */
   const handleCityChange = useCallback((index: number) => {
     setIndexCity(index);
   }, []);
+
+  /**
+   * Загружаем данны с сервера
+   */
+  useEffect(() => {
+    if (indexCity >= 0 && dateForecast) {
+      // setIsloading(true); // Отображение загрузки данных
+      api
+        .getForecastDay(list_cities[indexCity], dateForecast)
+        .then((res) => {
+          console.log(res.current);
+          setForecastDay(res.current);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          // setIsloading(false); // Отображение загрузки данных
+        });
+    }
+  }, [dateForecast, indexCity]);
 
   return (
     <div className='forecast-day'>
@@ -24,15 +54,7 @@ const ForecastDay: React.FC = () => {
           indexCity={indexCity}
           handleCityChange={handleCityChange}
         />
-        <input
-          className='input-forecast'
-          type='date'
-          id='start'
-          name='forecast-date'
-          value={forecastDate}
-          placeholder='forecastDate'
-          onChange={(event) => console.log(event.target.value)}
-        />
+        <InputDate setForecastDate={handleForecastDateChange} />
       </div>
       {/* {currentCity ? (
         <div className='forecast-day__weather'>

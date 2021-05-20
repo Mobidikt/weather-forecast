@@ -22,7 +22,7 @@ class Api {
       },
     );
   }
-  getForecastDay(city: CityType, time: string) {
+  getForecastDay(city: CityType, time: number) {
     return this._fetch(
       `/timemachine?lat=${city.latitude}&lon=${city.longitude}&dt=${time}&appid=${WEATHER_API.KEY}`,
       {

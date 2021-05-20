@@ -61,6 +61,7 @@ const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
               <img
                 className='card__img'
                 src={`/images/weather/${day.weather[0].icon}.png`}
+                alt='weather'
               />
               <p className='card__degree'>{formatDegress(day.temp.day)}°</p>
             </div>
