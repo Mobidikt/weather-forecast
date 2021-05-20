@@ -1,14 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { list_cities } from '../../config';
+import { formatFullDate } from '../../utils/formatDate';
+import { formatDegress } from '../../utils/formatDegress';
 import api from '../../utils/WeatherApi';
 import InputDate from '../InputDate/InputDate';
 import PlaceholderForecast from '../PlaceholderForecast/PlaceholderForecast';
 import SelectCity from '../SelectCity/SelectCity';
-import './ForecastDay.css';
+import './ForecastDay.scss';
 
 const ForecastDay: React.FC = () => {
   const [indexCity, setIndexCity] = useState<number>(-1);
-  const [forecastDay, setForecastDay] = useState<any>({});
+  const [forecastDay, setForecastDay] = useState<any>(null);
   const [dateForecast, setDateForecast] = useState<number | null>(0);
 
   /**
@@ -33,7 +35,7 @@ const ForecastDay: React.FC = () => {
       api
         .getForecastDay(list_cities[indexCity], dateForecast)
         .then((res) => {
-          console.log(res.current);
+          console.log(res.current.weather[0].icon);
           setForecastDay(res.current);
         })
         .catch((err) => {
@@ -56,14 +58,21 @@ const ForecastDay: React.FC = () => {
         />
         <InputDate setForecastDate={handleForecastDateChange} />
       </div>
-      {/* {currentCity ? (
-        <div className='forecast-day__weather'>
-          <p className='forecast-day__date'>Date</p>
-          <p className='forecast-day__degree'>degrees</p>
+      {forecastDay ? (
+        <div key={forecastDay.dt} className='forecast-day__card'>
+          <p className='forecast-day__date'>{formatFullDate(forecastDay.dt)}</p>
+          <img
+            className='forecast-day__img'
+            src={`/images/weather/${forecastDay.weather[0].icon}.png`}
+            alt='weather'
+          />
+          <p className='forecast-day__degree'>
+            {formatDegress(forecastDay.temp)}°
+          </p>
         </div>
-      ) : ( */}
-      <PlaceholderForecast />
-      {/* )} */}
+      ) : (
+        <PlaceholderForecast />
+      )}
     </div>
   );
 };
