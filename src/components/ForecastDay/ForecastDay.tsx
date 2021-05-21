@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { list_cities } from '../../config';
+import { HOUR_HISTORICAL_WEATHER, list_cities } from '../../config';
 import { formatFullDate } from '../../utils/formatDate';
 import { formatDegress } from '../../utils/formatDegress';
 import api from '../../utils/WeatherApi';
 import {
   WeatherHistoricalApiType,
-  WeatherCurrentApiType,
+  WeatherHourlyApiType,
 } from '../../utils/WeatherApiType';
 import InputDate from '../InputDate/InputDate';
 import PlaceholderForecast from '../PlaceholderForecast/PlaceholderForecast';
@@ -15,7 +15,7 @@ import './ForecastDay.scss';
 const ForecastDay: React.FC = () => {
   const [indexCity, setIndexCity] = useState<number>(-1);
   const [forecastDay, setForecastDay] =
-    useState<WeatherCurrentApiType | null>(null);
+    useState<WeatherHourlyApiType | null>(null);
   const [dateForecast, setDateForecast] = useState<number | null>(null);
 
   /**
@@ -40,7 +40,7 @@ const ForecastDay: React.FC = () => {
       api
         .getForecastDay(list_cities[indexCity], dateForecast)
         .then((res: WeatherHistoricalApiType) => {
-          setForecastDay(res.current);
+          setForecastDay(res.hourly[HOUR_HISTORICAL_WEATHER]);
         })
         .catch((err) => {
           console.log(err);
@@ -48,7 +48,7 @@ const ForecastDay: React.FC = () => {
         .finally(() => {
           // setIsloading(false); // Отображение загрузки данных
         });
-    }
+    } else setForecastDay(null);
   }, [dateForecast, indexCity]);
 
   return (
