@@ -6,10 +6,17 @@ export const addNullDate = (day: number) => {
   } else return `${day}`;
 };
 
+/**
+ * Преобразование месяца в строковое описание
+ * @param month номер месяца
+ */
 const formaMonth = (month: number) => {
   return name_month[month];
 };
 
+/**
+ * Преобразование даты в строку для отображения допустимого диапазона дат
+ */
 export const formatDateString = (date: number) => {
   const nowDate = new Date(date);
   return `${addNullDate(nowDate.getDate())}.${addNullDate(
@@ -17,6 +24,9 @@ export const formatDateString = (date: number) => {
   )}.${nowDate.getFullYear()} `;
 };
 
+/**
+ * Преобразование даты полученной с сервера
+ */
 export const formatFullDate = (date: number) => {
   const newDate = new Date(date * 1000);
   var month = newDate.getUTCMonth();

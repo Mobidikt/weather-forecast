@@ -14,6 +14,10 @@ class Api {
       return Promise.reject(res);
     });
   }
+  /**
+   * Загрузка данных с сервера о погоде на неделю
+   * @param city Город
+   */
   getForecastWeek(city: CityType) {
     return this._fetch(
       `?lat=${city.latitude}&lon=${city.longitude}&units=metric&appid=${WEATHER_API.KEY}`,
@@ -22,6 +26,11 @@ class Api {
       },
     );
   }
+  /**
+   * Загрузка данных с сервера за определенную дату
+   * @param city Город
+   * @param time Дата
+   */
   getForecastDay(city: CityType, time: number) {
     return this._fetch(
       `/timemachine?lat=${city.latitude}&lon=${city.longitude}&dt=${time}&units=metric&appid=${WEATHER_API.KEY}`,
