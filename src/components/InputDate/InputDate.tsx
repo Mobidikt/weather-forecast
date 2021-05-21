@@ -8,6 +8,7 @@ type InputDateType = {
 
 const InputDate: React.FC<InputDateType> = ({ setForecastDate }) => {
   const [date, setDate] = useState<string>('yyyy-MM-dd');
+  const [error, setError] = useState<string>('');
 
   const handleDateChange = useCallback(
     (date: string) => {
@@ -25,12 +26,13 @@ const InputDate: React.FC<InputDateType> = ({ setForecastDate }) => {
         currentDate < maxPermissibleDate
       ) {
         setForecastDate(Math.floor(currentDate / 1000));
+        setError('');
       } else {
         setForecastDate(null);
-        console.log(
-          `укажите дату от ${formatDateString(
+        setError(
+          `укажите c ${formatDateString(
             minPermissibleDate,
-          )} до ${formatDateString(maxPermissibleDate)}`,
+          )} по ${formatDateString(maxPermissibleDate)}`,
         );
       }
     },
@@ -38,15 +40,18 @@ const InputDate: React.FC<InputDateType> = ({ setForecastDate }) => {
   );
 
   return (
-    <input
-      className='input-forecast'
-      type='date'
-      id='start'
-      name='forecast-date'
-      value={date}
-      placeholder='forecastDate'
-      onChange={(event) => handleDateChange(event.target.value)}
-    />
+    <div>
+      <input
+        className={`input-date ${error ? 'input-date__error' : ''}`}
+        type='date'
+        id='start'
+        name='forecast-date'
+        value={date}
+        placeholder='forecastDate'
+        onChange={(event) => handleDateChange(event.target.value)}
+      />
+      <p className='input-error'>{error}</p>
+    </div>
   );
 };
 

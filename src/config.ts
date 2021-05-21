@@ -51,3 +51,5 @@ export const WEATHER_API: { URL: string; KEY: string } = {
   URL: 'https://api.openweathermap.org/data/2.5/onecall',
   KEY: 'e47b2d1df3cceb30e95d426a05ac5fb4',
 };
+
+export const HOUR_HISTORICAL_WEATHER = 12; // час по которому выводить данные о погоде за определенную дату
