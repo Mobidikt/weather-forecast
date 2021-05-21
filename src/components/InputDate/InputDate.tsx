@@ -1,42 +1,38 @@
 import React, { useCallback, useState } from 'react';
+import { useCurrentDateContext } from '../../states/CurrentDateState/CurrentDateContext';
 import { formatDateString } from '../../utils/formatDate';
 import './InputDate.scss';
 
-type InputDateType = {
-  setForecastDate: (index: number | null) => void;
-};
-
-const InputDate: React.FC<InputDateType> = ({ setForecastDate }) => {
-  const [date, setDate] = useState<string>('yyyy-MM-dd');
+const InputDate: React.FC = () => {
+  const { dateState, setDateState } = useCurrentDateContext();
   const [error, setError] = useState<string>('');
 
   const handleDateChange = useCallback(
     (date: string) => {
-      setDate(date);
+      if (setDateState) {
+        setDateState(date);
+        const currentDate = new Date(date).getTime();
+        const nowDate = new Date();
+        const maxPermissibleDate = new Date().setDate(nowDate.getDate() - 1);
+        const minPermissibleDate = new Date(
+          new Date().setHours(0, 0, 0, 0),
+        ).setDate(nowDate.getDate() - 5);
 
-      const currentDate = new Date(date).getTime();
-      const nowDate = new Date();
-      const maxPermissibleDate = new Date().setDate(nowDate.getDate() - 1);
-      const minPermissibleDate = new Date(
-        new Date().setHours(0, 0, 0, 0),
-      ).setDate(nowDate.getDate() - 5);
-
-      if (
-        minPermissibleDate <= currentDate &&
-        currentDate < maxPermissibleDate
-      ) {
-        setForecastDate(Math.floor(currentDate / 1000));
-        setError('');
-      } else {
-        setForecastDate(null);
-        setError(
-          `укажите c ${formatDateString(
-            minPermissibleDate,
-          )} по ${formatDateString(maxPermissibleDate)}`,
-        );
+        if (
+          minPermissibleDate <= currentDate &&
+          currentDate < maxPermissibleDate
+        ) {
+          setError('');
+        } else {
+          setError(
+            `укажите c ${formatDateString(
+              minPermissibleDate,
+            )} по ${formatDateString(maxPermissibleDate)}`,
+          );
+        }
       }
     },
-    [setForecastDate],
+    [setDateState],
   );
 
   return (
@@ -46,7 +42,7 @@ const InputDate: React.FC<InputDateType> = ({ setForecastDate }) => {
         type='date'
         id='start'
         name='forecast-date'
-        value={date}
+        value={dateState}
         placeholder='forecastDate'
         onChange={(event) => handleDateChange(event.target.value)}
       />
