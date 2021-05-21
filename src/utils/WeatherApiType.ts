@@ -88,5 +88,5 @@ export type WeatherHistoricalApiType = {
   timezone: string;
   timezone_offset: number;
   current: WeatherCurrentApiType;
-  hourly: WeatherHourlyApiType;
+  hourly: WeatherHourlyApiType[];
 };
