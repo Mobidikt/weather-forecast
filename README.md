@@ -1,13 +1,21 @@
 
-### `npm start`
+# Тестовое задание для поступления на React Bootcamp.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+https://mobidikt.github.io/weather-forecast/
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Приложение получает данные о погоде с сервера https://openweathermap.org/.
+Реализовано получение и отображение данных о погоде на ближайшие 7 дней (https://openweathermap.org/api/one-call-api), и погоды за предыдущие 5 дней (https://openweathermap.org/api/one-call-api#history). Реализована валидация вводимой даты для отображения погоды за предыдущие 5 дней.
 
 
-### Историческое API погоды (https://openweathermap.org/api/one-call-api#history)
+## npm start
 
-Предоставленное бесплатное историческое API погоды предоставляет данные за предыдущие 5 дней.
+Запуск прилодения в режиме разработки.
+Открыть в браузере http://localhost:3000.
+
+## npm run build
+
+Собирает проект в папку dist, готовый к загрузке на сервер.
+
+## npm run deploy
+
+Выкладывает собранный проект в ветку gh-pages.
