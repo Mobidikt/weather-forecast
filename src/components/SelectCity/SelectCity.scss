@@ -1,0 +1,90 @@
+.select-city {
+    position: relative;
+    width: 252px;
+    height: 48px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: rgba(128, 131, 164, 0.06);
+    border: 2px solid rgba(128, 131, 164, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    color: #2C2D76;
+    &__default{
+        color: #8083A4;
+    }
+    &:hover{
+        border: 2px solid #8083A4;
+    }
+    &::after {
+        content: url(../../assets/image/icons/select.png);
+        position: absolute;
+        right: 16px;
+        top: 9px;
+    }
+    &_focus::after{
+        transform: rotate(180deg);
+    }
+    &__option{
+        height: 36px;
+        padding: 12px 16px;
+        font-size: 16px;
+        color: #2C2D76;
+    }
+}
+
+
+.options{
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    left: -2px;
+    top:48px;
+    display: block;
+    background-color: transparent;
+
+    &__wrapper {
+        margin-top: 10px;
+        padding: 3px;
+        max-height: 160px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        background: #FFFFFF;
+        border: 2px solid rgba(128, 131, 164, 0.06);
+        box-sizing: border-box;
+        box-shadow: 0px 2px 4px rgba(4, 5, 73, 0.16), 14px 14px 20px rgba(5, 6, 114, 0.08);
+        border-radius: 8px;
+    }
+}
+.option{
+    padding: 6px 10px;
+    margin-bottom: 6px;
+    border-radius: 8px;
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #2C2D76;
+    cursor: pointer;
+    &:hover{
+        background: rgba(128, 131, 164, 0.06);
+    }
+}
+.options_hidden {
+    display: none;
+}
+.select-city__option{
+    display: none;
+}
+.select-city__label {
+    display: block;
+    cursor: pointer;
+    width: 100%;
+}

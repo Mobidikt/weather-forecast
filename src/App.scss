@@ -1,0 +1,19 @@
+.App {
+    background: url(./assets/image/forecast-Bg-up-1.png) top right no-repeat,
+        url(./assets/image/forecast-Bg-buttom.png) bottom left no-repeat,
+        #373AF5;
+}
+@media screen and (max-width: 1300px) {
+    .App {
+        background: url(./assets/image/forecast-Bg-up-1.png) -20px 0px no-repeat,
+            url(./assets/image/forecast-Bg-buttom.png) -20px bottom no-repeat,
+            #373AF5;
+    }
+}
+@media screen and (max-width: 900px) {
+    .App { 
+        background: url(./assets/image/Up-Bg-mob.png) top right no-repeat,
+            url(./assets/image/bottom-Bg-mob.png) 0px bottom no-repeat,
+            #373AF5;
+    }
+}
