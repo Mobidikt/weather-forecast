@@ -1,4 +1,5 @@
 import React from 'react';
+import { CurrentDateContextProvider } from '../../states/CurrentDateState/CurrentDateContext';
 import ForecastDay from '../ForecastDay/ForecastDay';
 import ForecastWeek from '../ForecastWeek/ForecastWeek';
 import './Main.scss';
@@ -7,7 +8,9 @@ const Main: React.FC = () => {
   return (
     <main className='main'>
       <ForecastWeek />
-      <ForecastDay />
+      <CurrentDateContextProvider>
+        <ForecastDay />
+      </CurrentDateContextProvider>
     </main>
   );
 };

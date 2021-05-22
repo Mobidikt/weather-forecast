@@ -1,3 +1,27 @@
+type WeatherApi = {
+  id: number;
+  main: string;
+  description: string;
+  icon:
+    | '01n'
+    | '01d'
+    | '02n'
+    | '02d'
+    | '03d'
+    | '03n'
+    | '04n'
+    | '04d'
+    | '09d'
+    | '09n'
+    | '10n'
+    | '10d'
+    | '11n'
+    | '11d'
+    | '13n'
+    | '13d'
+    | '50n'
+    | '50d';
+};
 export type WeatherDayApiType = {
   clouds: number;
   dew_point: number;
@@ -12,7 +36,7 @@ export type WeatherDayApiType = {
   sunrise: number;
   sunset: number;
   temp: {
-    day: string;
+    day: number;
     eve: number;
     max: number;
     min: number;
@@ -20,12 +44,7 @@ export type WeatherDayApiType = {
     night: number;
     uvi: number;
   };
-  weather: {
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
-  }[];
+  weather: WeatherApi[];
   wind_deg: number;
   wind_gust: number;
   wind_speed: number;
@@ -44,12 +63,7 @@ export type WeatherCurrentApiType = {
   visibility: number;
   wind_speed: number;
   wind_deg: number;
-  weather: {
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
-  }[];
+  weather: WeatherApi[];
 };
 
 export type WeatherHourlyApiType = {
@@ -63,12 +77,7 @@ export type WeatherHourlyApiType = {
   wind_speed: number;
   wind_deg: number;
   wind_gust: number;
-  weather: {
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
-  }[];
+  weather: WeatherApi[];
 };
 
 export type WeatherWeakApiType = {
