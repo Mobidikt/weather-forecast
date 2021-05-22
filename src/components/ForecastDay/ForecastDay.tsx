@@ -18,7 +18,7 @@ import { useCurrentDateContext } from '../../states/CurrentDateState/CurrentDate
 import './ForecastDay.scss';
 
 const ForecastDay: React.FC = () => {
-  const { currentDateUnix } = useCurrentDateContext();
+  const { dateUnixState } = useCurrentDateContext();
   const [indexCity, setIndexCity] = useState<number>(-1);
   const [forecastDay, setForecastDay] =
     useState<WeatherHourlyApiType | null>(null);
@@ -32,10 +32,10 @@ const ForecastDay: React.FC = () => {
    * Загружаем данны с сервера
    */
   useEffect(() => {
-    if (indexCity >= 0 && currentDateUnix) {
+    if (indexCity >= 0 && dateUnixState) {
       // setIsloading(true); // Отображение загрузки данных
       api
-        .getForecastDay(list_cities[indexCity], currentDateUnix)
+        .getForecastDay(list_cities[indexCity], dateUnixState)
         .then((res: WeatherHistoricalApiType) => {
           setForecastDay(res.hourly[HOUR_HISTORICAL_WEATHER]);
           console.log(res.hourly[HOUR_HISTORICAL_WEATHER]);
@@ -47,7 +47,7 @@ const ForecastDay: React.FC = () => {
           // setIsloading(false); // Отображение загрузки данных
         });
     } else setForecastDay(null);
-  }, [currentDateUnix, indexCity]);
+  }, [dateUnixState, indexCity]);
 
   return (
     <div className='forecast-day'>

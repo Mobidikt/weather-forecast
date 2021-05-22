@@ -1,37 +1,25 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 type CurrentDateContextType = {
-  dateState: string;
-  setDateState: React.Dispatch<React.SetStateAction<string>> | null;
-  currentDateUnix: number;
+  dateUnixState: number;
+  setDateUnixState: React.Dispatch<React.SetStateAction<number>> | null;
 };
 const initialState = {
-  dateState: 'yyyy-MM-dd',
-  setDateState: null,
-  currentDateUnix: 0,
+  dateUnixState: 0,
+  setDateUnixState: null,
 };
 const CurrentDateContext =
   React.createContext<CurrentDateContextType>(initialState);
 
 export const CurrentDateContextProvider: React.FC = ({ children }) => {
-  const [dateState, setDateState] = useState<string>('yyyy-MM-dd');
-
-  const currentDate = new Date(dateState).getTime();
-  const nowDate = new Date();
-  const maxPermissibleDate = new Date().setDate(nowDate.getDate() - 1);
-  const minPermissibleDate = new Date(new Date().setHours(0, 0, 0, 0)).setDate(
-    nowDate.getDate() - 5,
-  );
-
-  const currentDateUnix = useMemo(() => {
-    if (minPermissibleDate <= currentDate && currentDate < maxPermissibleDate) {
-      return Math.floor(new Date(dateState).getTime() / 1000);
-    } else return 0;
-  }, [dateState, currentDate, maxPermissibleDate, minPermissibleDate]);
+  const [dateUnixState, setDateUnixState] = useState<number>(0);
 
   return (
     <CurrentDateContext.Provider
-      value={{ dateState, setDateState, currentDateUnix }}>
+      value={{
+        dateUnixState,
+        setDateUnixState,
+      }}>
       {children}
     </CurrentDateContext.Provider>
   );
