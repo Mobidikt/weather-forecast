@@ -43,48 +43,6 @@
         overflow: hidden;
     }
 }
-.card {
-    height: 238px;
-    min-width: 174px;
-    width: 174px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: #373AF5;
-    border: 2px solid #373AF5;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 4px rgba(4, 5, 73, 0.25), 14px 14px 20px rgba(5, 6, 114, 0.2);
-    border-radius: 8px;
-    margin-right: 10px;
-    &:last-of-type {
-        margin-right: 0;
-    }
-    &__date {
-        font-family: Ubuntu;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 24px;
-        margin: 0;
-        color: #FFFFFF;
-    }
-    &__degree {
-        margin: 0;
-        font-family: Ubuntu;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 32px;
-        line-height: 32px;
-        color: #FFFFFF;
-        align-self: flex-end;
-    }
-    &__img{
-        align-self: center;
-        height: 120px;
-        width: 120px;
-    }
-}
 
 @media screen and (max-width: 800px) {
     .slider{
@@ -96,15 +54,6 @@
     }
     .slider__list {
         overflow-x: auto;
-    }
-    .card {
-        margin-right: 16px;
-        &:first-of-type{
-            margin-left: 24px;
-        }
-        &:last-of-type {
-            margin-right: 24px;
-        }
     }
     .slider__btn {
         display: none;
