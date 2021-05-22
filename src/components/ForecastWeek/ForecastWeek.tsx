@@ -9,10 +9,11 @@ import {
   WeatherDayApiType,
   WeatherWeakApiType,
 } from '../../utils/WeatherApiType';
+import Loader from '../Loader/Loader';
 
 const ForecastWeek: React.FC = () => {
   const [indexCity, setIndexCity] = useState<number>(-1);
-  // const [isloading, setIsloading] = useState<boolean>(false); // Отображение загрузки данных
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [forecastWeek, setForecastWeek] =
     useState<WeatherDayApiType[] | null>(null);
 
@@ -21,7 +22,7 @@ const ForecastWeek: React.FC = () => {
    */
   useEffect(() => {
     if (indexCity >= 0) {
-      // setIsloading(true); // Отображение загрузки данных
+      setIsLoading(true); // Отображение загрузки данных
       api
         .getForecastWeek(list_cities[indexCity])
         .then((res: WeatherWeakApiType) => {
@@ -31,7 +32,7 @@ const ForecastWeek: React.FC = () => {
           console.log(err);
         })
         .finally(() => {
-          // setIsloading(false); // Отображение загрузки данных
+          setIsLoading(false); // Отображение загрузки данных
         });
     }
   }, [indexCity]);
@@ -44,7 +45,7 @@ const ForecastWeek: React.FC = () => {
   }, []);
 
   return (
-    <div className='forecast-week'>
+    <section className='forecast-week'>
       <h2 className='forecast-week__title'>7 Days Forecast</h2>
       <div className='forecast-week__menu'>
         <SelectCity
@@ -53,12 +54,14 @@ const ForecastWeek: React.FC = () => {
           indexCity={indexCity}
         />
       </div>
-      {forecastWeek ? (
+      {isLoading ? (
+        <Loader />
+      ) : forecastWeek ? (
         <Slider forecastWeek={forecastWeek} />
       ) : (
         <PlaceholderForecast />
       )}
-    </div>
+    </section>
   );
 };
 
