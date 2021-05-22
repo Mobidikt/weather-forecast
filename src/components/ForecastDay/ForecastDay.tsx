@@ -16,12 +16,14 @@ import PlaceholderForecast from '../PlaceholderForecast/PlaceholderForecast';
 import SelectCity from '../SelectCity/SelectCity';
 import { useCurrentDateContext } from '../../states/CurrentDateState/CurrentDateContext';
 import './ForecastDay.scss';
+import Loader from '../Loader/Loader';
 
 const ForecastDay: React.FC = () => {
   const { dateUnixState } = useCurrentDateContext();
   const [indexCity, setIndexCity] = useState<number>(-1);
   const [forecastDay, setForecastDay] =
     useState<WeatherHourlyApiType | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   /**
    * Выбираем город
    */
@@ -33,7 +35,7 @@ const ForecastDay: React.FC = () => {
    */
   useEffect(() => {
     if (indexCity >= 0 && dateUnixState) {
-      // setIsloading(true); // Отображение загрузки данных
+      setIsLoading(true); // Отображение загрузки данных
       api
         .getForecastDay(list_cities[indexCity], dateUnixState)
         .then((res: WeatherHistoricalApiType) => {
@@ -44,13 +46,13 @@ const ForecastDay: React.FC = () => {
           console.log(err);
         })
         .finally(() => {
-          // setIsloading(false); // Отображение загрузки данных
+          setIsLoading(false); // Отображение загрузки данных
         });
     } else setForecastDay(null);
   }, [dateUnixState, indexCity]);
 
   return (
-    <div className='forecast-day'>
+    <section className='forecast-day'>
       <h2 className='forecast-day__title'>Forecast for a Date in the Past</h2>
       <div className='forecast-day__menu'>
         <SelectCity
@@ -60,7 +62,9 @@ const ForecastDay: React.FC = () => {
         />
         <InputDate />
       </div>
-      {forecastDay ? (
+      {isLoading ? (
+        <Loader />
+      ) : forecastDay ? (
         <div key={forecastDay.dt} className='forecast-day__card'>
           <p className='forecast-day__date'>{formatFullDate(forecastDay.dt)}</p>
           <img
@@ -75,7 +79,7 @@ const ForecastDay: React.FC = () => {
       ) : (
         <PlaceholderForecast />
       )}
-    </div>
+    </section>
   );
 };
 
