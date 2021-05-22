@@ -1,0 +1,15 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 16px;
+    &__text {
+        margin: 0;
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        color: #FFFFFF;
+        opacity: 0.6;
+    }
+}
