@@ -40,7 +40,6 @@ const ForecastDay: React.FC = () => {
         .getForecastDay(list_cities[indexCity], dateUnixState)
         .then((res: WeatherHistoricalApiType) => {
           setForecastDay(res.hourly[HOUR_HISTORICAL_WEATHER]);
-          console.log(res.hourly[HOUR_HISTORICAL_WEATHER]);
         })
         .catch((err) => {
           console.log(err);
