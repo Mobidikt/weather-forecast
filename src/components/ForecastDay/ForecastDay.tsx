@@ -28,7 +28,6 @@ const ForecastDay: React.FC = () => {
   const handleCityChange = useCallback((index: number) => {
     setIndexCity(index);
   }, []);
-
   /**
    * Загружаем данны с сервера
    */
@@ -39,6 +38,7 @@ const ForecastDay: React.FC = () => {
         .getForecastDay(list_cities[indexCity], currentDateUnix)
         .then((res: WeatherHistoricalApiType) => {
           setForecastDay(res.hourly[HOUR_HISTORICAL_WEATHER]);
+          console.log(res.hourly[HOUR_HISTORICAL_WEATHER]);
         })
         .catch((err) => {
           console.log(err);
@@ -63,11 +63,11 @@ const ForecastDay: React.FC = () => {
       {forecastDay ? (
         <div key={forecastDay.dt} className='forecast-day__card'>
           <p className='forecast-day__date'>{formatFullDate(forecastDay.dt)}</p>
-          {/* <img
+          <img
             className='forecast-day__img'
             src={IMG_WEATHER[forecastDay.weather[0].icon]}
             alt='weather'
-          /> */}
+          />
           <p className='forecast-day__degree'>
             {formatDegress(forecastDay.temp)}°
           </p>

@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from 'react';
+import { IMG_WEATHER } from '../../config';
 import { formatFullDate } from '../../utils/formatDate';
 import { formatDegress } from '../../utils/formatDegress';
+import { WeatherDayApiType } from '../../utils/WeatherApiType';
 import './Slider.scss';
 
 type SliderType = {
-  forecastWeek: any[];
+  forecastWeek: WeatherDayApiType[];
 };
 
 const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
@@ -60,7 +62,7 @@ const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
               <p className='card__date'>{formatFullDate(day.dt)}</p>
               <img
                 className='card__img'
-                src={`/images/weather/${day.weather[0].icon}.png`}
+                src={IMG_WEATHER[day.weather[0].icon]}
                 alt='weather'
               />
               <p className='card__degree'>{formatDegress(day.temp.day)}°</p>
