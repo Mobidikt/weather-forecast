@@ -1,7 +1,8 @@
 /**
  * Функция filter которая работает аналогично Array.prototype.filter, только через reduce
+ * @template T
  * @param {(element: T) => boolean} predicate
- * @param {collection: T[]} collection
+ * @param {T[]} collection
  * @returns { T[]}
  */
 function filter(predicate, collection) {
