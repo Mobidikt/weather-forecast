@@ -9,30 +9,21 @@ const InputDate: React.FC = () => {
   const [error, setError] = useState<string>('');
 
   const handleDateChange = useCallback(
-    (date: string) => {
+    (dateInput: string) => {
       if (setDateUnixState) {
-        setDate(date);
-        const currentDate = new Date(date).getTime();
+        setDate(dateInput);
+        const currentDate = new Date(dateInput).getTime();
         const nowDate = new Date();
         const maxPermissibleDate = new Date().setDate(nowDate.getDate() - 1);
-        const minPermissibleDate = new Date(
-          new Date().setHours(0, 0, 0, 0),
-        ).setDate(nowDate.getDate() - 5);
+        const minPermissibleDate = new Date(new Date().setHours(0, 0, 0, 0)).setDate(nowDate.getDate() - 5);
 
-        if (
-          minPermissibleDate <= currentDate &&
-          currentDate < maxPermissibleDate
-        ) {
-          const dateUnix = Math.floor(new Date(date).getTime() / 1000);
+        if (minPermissibleDate <= currentDate && currentDate < maxPermissibleDate) {
+          const dateUnix = Math.floor(new Date(dateInput).getTime() / 1000);
           setDateUnixState(dateUnix);
           setError('');
         } else {
           setDateUnixState(0);
-          setError(
-            `укажите c ${formatDateString(
-              minPermissibleDate,
-            )} по ${formatDateString(maxPermissibleDate)}`,
-          );
+          setError(`укажите c ${formatDateString(minPermissibleDate)} по ${formatDateString(maxPermissibleDate)}`);
         }
       }
     },
@@ -43,14 +34,14 @@ const InputDate: React.FC = () => {
     <div>
       <input
         className={`input-date ${error ? 'input-date__error' : ''}`}
-        type='date'
-        id='start'
-        name='forecast-date'
+        type="date"
+        id="start"
+        name="forecast-date"
         value={date}
-        placeholder='forecastDate'
+        placeholder="forecastDate"
         onChange={(event) => handleDateChange(event.target.value)}
       />
-      <p className='input-error'>{error}</p>
+      <p className="input-error">{error}</p>
     </div>
   );
 };

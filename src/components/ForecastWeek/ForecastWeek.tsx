@@ -1,21 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import SelectCity from '../SelectCity/SelectCity';
-import { list_cities } from '../../config';
+import { LIST_CITIES } from '../../config';
 import api from '../../utils/WeatherApi';
 import './ForecastWeek.scss';
 import Slider from '../Slider/Slider';
 import PlaceholderForecast from '../PlaceholderForecast/PlaceholderForecast';
-import {
-  WeatherDayApiType,
-  WeatherWeakApiType,
-} from '../../utils/WeatherApiType';
+import { WeatherDayApiType, WeatherWeakApiType } from '../../utils/WeatherApiType';
 import Loader from '../Loader/Loader';
 
 const ForecastWeek: React.FC = () => {
   const [indexCity, setIndexCity] = useState<number>(-1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [forecastWeek, setForecastWeek] =
-    useState<WeatherDayApiType[] | null>(null);
+  const [forecastWeek, setForecastWeek] = useState<WeatherDayApiType[] | null>(null);
 
   /**
    * Загружаем данны с сервера
@@ -24,7 +20,7 @@ const ForecastWeek: React.FC = () => {
     if (indexCity >= 0) {
       setIsLoading(true); // Отображение загрузки данных
       api
-        .getForecastWeek(list_cities[indexCity])
+        .getForecastWeek(LIST_CITIES[indexCity])
         .then((res: WeatherWeakApiType) => {
           setForecastWeek(res.daily);
         })
@@ -43,24 +39,15 @@ const ForecastWeek: React.FC = () => {
   const handleCityChange = useCallback((index: number) => {
     setIndexCity(index);
   }, []);
-
   return (
-    <section className='forecast-week'>
-      <h2 className='forecast-week__title'>7 Days Forecast</h2>
-      <div className='forecast-week__menu'>
-        <SelectCity
-          prefixId='week'
-          handleCityChange={handleCityChange}
-          indexCity={indexCity}
-        />
+    <section className="forecast-week">
+      <h2 className="forecast-week__title">7 Days Forecast</h2>
+      <div className="forecast-week__menu">
+        <SelectCity prefixId="week" handleCityChange={handleCityChange} indexCity={indexCity} />
       </div>
-      {isLoading ? (
-        <Loader />
-      ) : forecastWeek ? (
-        <Slider forecastWeek={forecastWeek} />
-      ) : (
-        <PlaceholderForecast />
-      )}
+      {isLoading ? <Loader /> : null}
+      {forecastWeek && !isLoading ? <Slider forecastWeek={forecastWeek} /> : null}
+      {!forecastWeek && !isLoading ? <PlaceholderForecast /> : null}
     </section>
   );
 };

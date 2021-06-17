@@ -4,10 +4,10 @@ import CardSlider from '../CardSlider/CardSlider';
 import './Slider.scss';
 
 type SliderType = {
-  forecastWeek: WeatherDayApiType[];
+  forecastWeek: WeatherDayApiType[],
 };
 
-const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
+const Slider: React.FC<SliderType> = ({ forecastWeek }: SliderType) => {
   const [translateX, settranslateX] = useState(0);
 
   /**
@@ -30,31 +30,27 @@ const Slider: React.FC<SliderType> = ({ forecastWeek }) => {
   );
 
   return (
-    <div className='slider'>
+    <div className="slider">
       <button
         disabled={translateX >= 0}
-        className={`slider__btn slider__btn_left ${
-          translateX === 0 ? 'slider__btn_disable' : ''
-        }`}
-        type='button'
+        className={`slider__btn slider__btn_left ${translateX === 0 ? 'slider__btn_disable' : ''}`}
+        type="button"
+        aria-label="left"
         onClick={() => {
           onSliderSwap('left');
         }}
       />
       <button
         disabled={translateX === -920}
-        className={`slider__btn slider__btn_right ${
-          translateX <= -920 ? 'slider__btn_disable' : ''
-        }`}
-        type='button'
+        className={`slider__btn slider__btn_right ${translateX <= -920 ? 'slider__btn_disable' : ''}`}
+        type="button"
+        aria-label="right"
         onClick={() => {
           onSliderSwap('right');
         }}
       />
-      <div className='slider__wrapper'>
-        <ul
-          className='slider__list'
-          style={{ transform: `translateX(${translateX}px)` }}>
+      <div className="slider__wrapper">
+        <ul className="slider__list" style={{ transform: `translateX(${translateX}px)` }}>
           {forecastWeek.map((day) => (
             <CardSlider day={day} key={day.dt} />
           ))}

@@ -23,7 +23,7 @@ export type CityType = {
   latitude: number;
 };
 
-export const list_cities: CityType[] = [
+export const LIST_CITIES: CityType[] = [
   {
     name: 'Samara',
     longitude: 53.195873,
@@ -51,7 +51,7 @@ export const list_cities: CityType[] = [
   },
 ];
 
-export const name_month: string[] = [
+export const NAME_MONTH: string[] = [
   'jan',
   'feb',
   'mar',
@@ -71,7 +71,8 @@ export const WEATHER_API: { URL: string; KEY: string } = {
   KEY: 'e47b2d1df3cceb30e95d426a05ac5fb4',
 };
 
-export const HOUR_HISTORICAL_WEATHER = 12; // час по которому выводить данные о погоде за определенную дату
+// час по которому выводить данные о погоде за определенную дату
+export const HOUR_HISTORICAL_WEATHER = 12;
 
 export const IMG_WEATHER = {
   '01d': weatherImg01d,
