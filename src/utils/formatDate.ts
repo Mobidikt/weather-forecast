@@ -1,18 +1,17 @@
-import { name_month } from '../config';
+import { NAME_MONTH } from '../config';
 
 export const addNullDate = (day: number) => {
   if (day < 10) {
     return `0${day}`;
-  } else return `${day}`;
+  }
+  return `${day}`;
 };
 
 /**
  * Преобразование месяца в строковое описание
  * @param month номер месяца
  */
-const formaMonth = (month: number) => {
-  return name_month[month];
-};
+const formaMonth = (month: number) => NAME_MONTH[month];
 
 /**
  * Преобразование даты в строку для отображения допустимого диапазона дат
@@ -29,8 +28,8 @@ export const formatDateString = (date: number) => {
  */
 export const formatFullDate = (date: number) => {
   const newDate = new Date(date * 1000);
-  var month = newDate.getUTCMonth();
-  var day = newDate.getUTCDate();
-  var year = newDate.getUTCFullYear();
+  const month = newDate.getUTCMonth();
+  const day = newDate.getUTCDate();
+  const year = newDate.getUTCFullYear();
   return `${addNullDate(day)} ${formaMonth(month)} ${year}`;
 };
