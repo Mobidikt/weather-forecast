@@ -1,6 +1,18 @@
 {
   "short_name": "Weather",
   "name": "Weather-forecast",
+  "protocol_handlers": [
+    {
+      "protocol": "geo",
+      "name": "Weather",
+      "uriTemplate": "https://mobidikt.github.io/weather-forecast/"
+    },
+    {
+      "protocol": "web+weather",
+      "name": "Weather",
+      "uriTemplate": "https://mobidikt.github.io/weather-forecast/"
+    }
+  ],
   "icons": [
     {
       "src": "favicon.ico",
