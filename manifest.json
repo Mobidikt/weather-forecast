@@ -3,7 +3,7 @@
   "name": "Weather-forecast",
   "protocol_handlers": [
     {
-      "protocol": "geo",
+      "protocol": "geo:",
       "name": "Weather",
       "uriTemplate": "https://mobidikt.github.io/weather-forecast/"
     },
