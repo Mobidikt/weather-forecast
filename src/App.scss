@@ -1,7 +1,14 @@
 .App {
+    position: relative;
     background: url(./assets/image/Up-Bg-big.png) top right no-repeat,
         url(./assets/image/forecast-Bg-buttom.png) bottom left no-repeat,
         #373AF5;
+}
+.offLine {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    height: 20px;
 }
 @media screen and (max-width: 1300px) {
     .App {

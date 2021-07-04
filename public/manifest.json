@@ -1,6 +1,18 @@
 {
   "short_name": "Weather",
   "name": "Weather-forecast",
+  "protocol_handlers": [
+    {
+      "protocol": "geo:",
+      "name": "Weather",
+      "uriTemplate": "https://mobidikt.github.io/weather-forecast/"
+    },
+    {
+      "protocol": "web+weather",
+      "name": "Weather",
+      "uriTemplate": "https://mobidikt.github.io/weather-forecast/"
+    }
+  ],
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,17 +20,19 @@
       "type": "image/x-icon"
     },
     {
-      "src": "image192.png",
+      "src": "Image192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
-      "src": "image512.png",
+      "src": "Image512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": "https://mobidikt.github.io/weather-forecast/",
+  "scope": "./",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
