@@ -10,7 +10,8 @@
     {
       "src": "Image192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "Image512.png",
