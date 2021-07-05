@@ -43,6 +43,11 @@ function App() {
     window.addEventListener('online', updateOnlineStatus);
     window.addEventListener('offline', updateOnlineStatus);
   });
+  window.navigator.registerProtocolHandler(
+    'geo',
+    'https://mobidikt.github.io/weather-forecast/data=%s',
+    'Weather',
+  );
   return (
     <div className='App'>
       {onlineStatus ? null : (
