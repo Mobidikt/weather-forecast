@@ -11,6 +11,11 @@
       "protocol": "web+weather",
       "name": "Weather",
       "uriTemplate": "https://mobidikt.github.io/weather-forecast/"
+    },   
+    {
+      "protocol": "web+",
+      "name": "Weather",
+      "uriTemplate": "https://mobidikt.github.io/weather-forecast/"
     }
   ],
   "icons": [
