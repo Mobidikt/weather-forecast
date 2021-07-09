@@ -36,7 +36,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "https://mobidikt.github.io/weather-forecast/",
+  "start_url": "https://weather-f7f5e.web.app/",
   "scope": "./",
   "display": "standalone",
   "theme_color": "#000000",
