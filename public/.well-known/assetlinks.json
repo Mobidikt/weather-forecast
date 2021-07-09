@@ -1,0 +1,5 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target" : { "namespace": "android_app", "package_name": "io.github.mobidikt.twa",
+                 "sha256_cert_fingerprints": ["9E:15:65:6A:DE:70:47:5F:11:96:C2:A3:33:EC:82:B9:A8:E2:CB:8A:C5:0B:49:74:14:0E:8A:65:4F:3B:BD:34"] }
+  }]
